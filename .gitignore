@@ -1,0 +1,17 @@
+# 编译生成的文件
+build/
+sdkconfig
+sdkconfig.old
+*.elf
+*.bin
+*.map
+*.o
+
+# IDE/编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 个人配置文件
+partitions.csv  # 如果你不想把分区表提交

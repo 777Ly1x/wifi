@@ -1,0 +1,26 @@
+//网页启动扫描下发的指令
+{
+	"scan":"start"
+}
+
+//ESP32S3扫描后上报的wifi列表
+{
+	"wifi_list":[
+		{
+			"ssid":"test1",
+			"rssi":-23,
+			"encrypted":true
+		},
+		{
+			"ssid":"test2",
+			"rssi":-70,
+			"encrypted":true
+		}
+	]
+}
+
+//网页下发要连接的wifi信息
+{
+	"ssid":"1123124234",
+	"password":"1dsflj121"
+}
