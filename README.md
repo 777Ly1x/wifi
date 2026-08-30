@@ -1,35 +1,19 @@
-| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C6 | ESP32-H2 | ESP32-S2 | ESP32-S3 |
-| ----------------- | ----- | -------- | -------- | -------- | -------- | -------- | -------- |
+# 物联网环境控制终端
 
-# _Sample project_
+基于ESP32+FreeRTOS的物联网终端，实现环境传感采集、触摸屏交互、OneNET云端双向控制、网页配网功能。
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+## 技术栈
+- **MCU**: ESP32
+- **框架**: ESP-IDF + FreeRTOS
+- **显示**: LVGL图形库，240×280触摸屏
+- **通信**: MQTT、WebSocket、WiFi
+- **云平台**: OneNET
+- **外设**: DHT11/DHT22(温湿度)、WS2812(RGB灯带)
 
-This is the simplest buildable example. The example is used by command `idf.py create-project`
-that copies the project to user specified path and set it's name. For more information follow the [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project)
-
-
-
-## How to use example
-We encourage the users to use the example as a template for the new projects.
-A recommended way is to follow the instructions on a [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project).
-
-## Example folder contents
-
-The project **sample_project** contains one source file in C language [main.c](main/main.c). The file is located in folder [main](main).
-
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt`
-files that provide set of directives and instructions describing the project's source files and targets
-(executable, library, or both). 
-
-Below is short explanation of remaining files in the project folder.
-
-```
-├── CMakeLists.txt
-├── main
-│   ├── CMakeLists.txt
-│   └── main.c
-└── README.md                  This is the file you are currently reading
-```
-Additionally, the sample project contains Makefile and component.mk files, used for the legacy Make based build system. 
-They are not used or needed when building with CMake and idf.py.
+## 核心功能
+- 3任务+2消息队列架构，解耦传感器采集、LVGL显示、MQTT上报业务
+- 接入OneNET云平台，MQTT QoS1发布订阅，JSON物模型上报温湿度与灯光状态
+- 云端反向控制WS2812 RGB灯带色彩与亮度
+- 移植LVGL驱动240×280触摸屏，实时展示环境数据
+- 界面滑块调节WS2812灯光色彩与PWM照明亮度
+- AP配网模式：长按按键进入，基于WebSocket实现网页配网，获取WiFi后自动连接
